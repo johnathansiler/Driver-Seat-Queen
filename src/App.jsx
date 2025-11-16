@@ -44,6 +44,16 @@ function App() {
     loadUserData()
   }, [])
 
+  // Reset index when category filter changes to prevent out-of-bounds access
+  useEffect(() => {
+    if (gameState === 'study' || gameState === 'flashcards') {
+      const filtered = categoryFilter === 'all' ? questions : questions.filter(q => q.category === categoryFilter)
+      if (currentQuestionIndex >= filtered.length && filtered.length > 0) {
+        setCurrentQuestionIndex(0)
+      }
+    }
+  }, [categoryFilter, gameState, questions, currentQuestionIndex])
+
   const loadUserData = () => {
     const savedStreak = storage.getStreak()
     const savedAchievements = storage.getAchievements()
@@ -160,7 +170,10 @@ function App() {
   }
 
   const handleFlashcardNext = (know = null) => {
-    const currentCard = filteredQuestions[currentQuestionIndex]
+    const filtered = getFilteredQuestions()
+    if (filtered.length === 0) return
+    const currentCard = filtered[currentQuestionIndex]
+    if (!currentCard) return
 
     // Track if they know it or need to study
     if (know === true && !knownCards.includes(currentCard.id)) {
@@ -169,7 +182,7 @@ function App() {
       setNeedStudyCards([...needStudyCards, currentCard.id])
     }
 
-    if (currentQuestionIndex < filteredQuestions.length - 1) {
+    if (currentQuestionIndex < filtered.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       setIsFlipped(false)
     }
@@ -259,6 +272,7 @@ function App() {
 
   const handleStudyNext = () => {
     const filtered = getFilteredQuestions()
+    if (filtered.length === 0) return
     if (currentQuestionIndex < filtered.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       setShowAnswer(false)
@@ -274,6 +288,7 @@ function App() {
 
   const handleStudyAnswer = (answerIndex) => {
     const studyQuestion = getFilteredQuestions()[currentQuestionIndex]
+    if (!studyQuestion) return
     const questionType = studyQuestion.type || 'multiple-choice'
 
     let isCorrect = false
@@ -297,6 +312,7 @@ function App() {
     setCategoryFilter(category)
     setCurrentQuestionIndex(0)
     setShowAnswer(false)
+    setIsFlipped(false)
   }
 
   const toggleSound = () => {
@@ -320,9 +336,9 @@ function App() {
   }
 
   // Render variables
-  const currentQuestion = questions[currentQuestionIndex]
+  const currentQuestion = questions?.[currentQuestionIndex] || null
   const filteredQuestions = getFilteredQuestions()
-  const studyQuestion = filteredQuestions[currentQuestionIndex]
+  const studyQuestion = filteredQuestions?.[currentQuestionIndex] || null
   const passingScore = Math.ceil(questions.length * 0.8)
   const percentage = Math.round((score / questions.length) * 100)
   const passed = score >= passingScore
