@@ -361,18 +361,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* Motivational Quotes Background */}
-      <div className="motivation-quotes">
-        <div className="quote-bubble top-left rotate-1">{motivationalQuotes[quoteIndices[0]]}</div>
-        <div className="quote-bubble top-right rotate-2">{motivationalQuotes[quoteIndices[1]]}</div>
-        <div className="quote-bubble middle-left rotate-3">{motivationalQuotes[quoteIndices[2]]}</div>
-        <div className="quote-bubble middle-right rotate-4">{motivationalQuotes[quoteIndices[3]]}</div>
-        <div className="quote-bubble bottom-left rotate-5">{motivationalQuotes[quoteIndices[4]]}</div>
-        <div className="quote-bubble bottom-right rotate-6">{motivationalQuotes[quoteIndices[5]]}</div>
-        <div className="quote-bubble top-center rotate-1">{motivationalQuotes[quoteIndices[6]]}</div>
-        <div className="quote-bubble bottom-center rotate-2">{motivationalQuotes[quoteIndices[7]]}</div>
-      </div>
-
       {/* Sound Toggle - Always visible */}
       <button className="sound-toggle" onClick={toggleSound} title={soundEnabled ? 'Mute sounds' : 'Enable sounds'}>
         {soundEnabled ? '🔊' : '🔇'}
@@ -538,60 +526,21 @@ function App() {
           </div>
 
           <div className="category-filter">
-            <button
-              className={`filter-btn ${categoryFilter === 'all' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('all')}
+            <select
+              className="category-dropdown"
+              value={categoryFilter}
+              onChange={(e) => handleCategoryChange(e.target.value)}
             >
-              All
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'road-rules' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('road-rules')}
-            >
-              🚗 Road Rules
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'road-signs' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('road-signs')}
-            >
-              🛑 Signs
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'pavement-markings' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('pavement-markings')}
-            >
-              🛣️ Pavement
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'traffic-signals' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('traffic-signals')}
-            >
-              🚦 Signals
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'safe-driving' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('safe-driving')}
-            >
-              🦺 Safe Driving
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'sharing-road' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('sharing-road')}
-            >
-              🚴 Sharing Road
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'vehicle-equipment' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('vehicle-equipment')}
-            >
-              🔧 Equipment
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'emergency-situations' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('emergency-situations')}
-            >
-              🚨 Emergency
-            </button>
+              <option value="all">All Categories</option>
+              <option value="road-rules">🚗 Road Rules</option>
+              <option value="road-signs">🛑 Road Signs</option>
+              <option value="pavement-markings">🛣️ Pavement Markings</option>
+              <option value="traffic-signals">🚦 Traffic Signals</option>
+              <option value="safe-driving">🦺 Safe Driving</option>
+              <option value="sharing-road">🚴 Sharing the Road</option>
+              <option value="vehicle-equipment">🔧 Vehicle Equipment</option>
+              <option value="emergency-situations">🚨 Emergency Situations</option>
+            </select>
           </div>
 
           <div className="study-card">
@@ -758,60 +707,21 @@ function App() {
           </div>
 
           <div className="category-filter">
-            <button
-              className={`filter-btn ${categoryFilter === 'all' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('all')}
+            <select
+              className="category-dropdown"
+              value={categoryFilter}
+              onChange={(e) => handleCategoryChange(e.target.value)}
             >
-              All
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'road-rules' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('road-rules')}
-            >
-              🚗 Road Rules
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'road-signs' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('road-signs')}
-            >
-              🛑 Signs
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'pavement-markings' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('pavement-markings')}
-            >
-              🛣️ Pavement
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'traffic-signals' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('traffic-signals')}
-            >
-              🚦 Signals
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'safe-driving' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('safe-driving')}
-            >
-              🦺 Safe Driving
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'sharing-road' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('sharing-road')}
-            >
-              🚴 Sharing Road
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'vehicle-equipment' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('vehicle-equipment')}
-            >
-              🔧 Equipment
-            </button>
-            <button
-              className={`filter-btn ${categoryFilter === 'emergency-situations' ? 'active' : ''}`}
-              onClick={() => handleCategoryChange('emergency-situations')}
-            >
-              🚨 Emergency
-            </button>
+              <option value="all">All Categories</option>
+              <option value="road-rules">🚗 Road Rules</option>
+              <option value="road-signs">🛑 Road Signs</option>
+              <option value="pavement-markings">🛣️ Pavement Markings</option>
+              <option value="traffic-signals">🚦 Traffic Signals</option>
+              <option value="safe-driving">🦺 Safe Driving</option>
+              <option value="sharing-road">🚴 Sharing the Road</option>
+              <option value="vehicle-equipment">🔧 Vehicle Equipment</option>
+              <option value="emergency-situations">🚨 Emergency Situations</option>
+            </select>
           </div>
 
           <div className="flashcard-progress">
