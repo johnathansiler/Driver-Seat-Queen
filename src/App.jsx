@@ -7,6 +7,21 @@ import { ACHIEVEMENTS, checkNewAchievements, getRandomQuote } from './data/achie
 import * as storage from './utils/storage'
 
 function App() {
+  // Sound files array
+  const soundFiles = [
+    '/sounds/ABSOLUTELY - AUDIO FROM JAYUZUMI.COM.mp3',
+    '/sounds/barbia.mp3',
+    '/sounds/calling-all-barbz-nicki-minaj.mp3',
+    '/sounds/I FEEL LIKE WE\'VE ELEVATED - AUDIO FROM JAYUZUMI.COM.mp3',
+    '/sounds/nicki-minaj-laughving.mp3',
+    '/sounds/nickis-kiss-kiss-sounds.mp3',
+    '/sounds/oh-my-gaawwd-nicki-minaj.mp3',
+    '/sounds/pink-wig-thick-ass-give-em-whiplash.mp3',
+    '/sounds/to-fly.mp3',
+    '/sounds/videoleap-9cde839e-2d8d-4945-a485-23d7f297cd9e-online-audio-converter.mp3',
+    '/sounds/YEAH - AUDIO FROM JAYUZUMI.COM.mp3'
+  ]
+
   // Game State: welcome, mode-select, quiz, study, practice, review, results, dashboard, flashcards
   const [gameState, setGameState] = useState('welcome')
   const [quizMode, setQuizMode] = useState('test') // test, practice, review
@@ -71,9 +86,14 @@ function App() {
   const playSound = (type) => {
     if (!soundEnabled) return
 
-    // Simple sound feedback using confetti and visual cues
-    // You can add actual sound files later if desired
-    if (type === 'achievement') {
+    // Play random sound from the sound files array
+    const randomSound = soundFiles[Math.floor(Math.random() * soundFiles.length)]
+    const audio = new Audio(randomSound)
+    audio.volume = 0.5 // Set volume to 50%
+    audio.play().catch(err => console.log('Audio play failed:', err))
+
+    // Visual feedback with confetti
+    if (type === 'achievement' || type === 'correct') {
       confetti({
         particleCount: 100,
         spread: 70,
@@ -93,6 +113,7 @@ function App() {
 
   // Mode Selection Functions
   const startTest = () => {
+    playSound('mode')
     setQuizMode('test')
     setGameState('quiz')
     setCurrentQuestionIndex(0)
@@ -106,6 +127,7 @@ function App() {
   }
 
   const startPractice = () => {
+    playSound('mode')
     setQuizMode('practice')
     setGameState('quiz')
     setCurrentQuestionIndex(0)
@@ -126,6 +148,7 @@ function App() {
       return
     }
 
+    playSound('mode')
     const reviewQuestions = floridaQuestions.filter(q => wrongAnswerIds.includes(q.id))
     setQuizMode('review')
     setGameState('quiz')
@@ -140,6 +163,7 @@ function App() {
   }
 
   const startStudy = () => {
+    playSound('mode')
     setGameState('study')
     setCurrentQuestionIndex(0)
     setCategoryFilter('all')
@@ -150,12 +174,14 @@ function App() {
   }
 
   const viewDashboard = () => {
+    playSound('mode')
     setStats(storage.getStats())
     setUserLevel(storage.getLevel())
     setGameState('dashboard')
   }
 
   const startFlashcards = () => {
+    playSound('mode')
     setGameState('flashcards')
     setCurrentQuestionIndex(0)
     setCategoryFilter('all')
