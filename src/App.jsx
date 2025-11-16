@@ -38,42 +38,10 @@ function App() {
   const [stats, setStats] = useState({})
   const [soundEnabled, setSoundEnabled] = useState(true)
 
-  // Rotating motivational quotes
-  const [quoteIndices, setQuoteIndices] = useState([0, 1, 2, 3, 4, 5, 6, 7])
-
-  const motivationalQuotes = [
-    "You got this, Queen! 👑",
-    "Slay that test! 💅",
-    "Period! 💖",
-    "Boss moves only! 🔥",
-    "Main character energy! ✨",
-    "You're THAT girl! 💯",
-    "Secure the bag! 💰",
-    "No cap, you're amazing! 🎀",
-    "Living your best life! 🌟",
-    "Hot girl sh*t! 🔥",
-    "Understood the assignment! 📝",
-    "It's giving success! ✨",
-    "Stay winning! 🏆",
-    "Queens don't quit! 👑",
-    "Gaslight, Gatekeep, Girl boss! 💪",
-  ]
-
   // Load data on mount
   useEffect(() => {
     setQuestions(shuffleQuestions(floridaQuestions).slice(0, 50))
     loadUserData()
-  }, [])
-
-  // Rotate quotes every 30 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuoteIndices(prevIndices =>
-        prevIndices.map(() => Math.floor(Math.random() * motivationalQuotes.length))
-      )
-    }, 30000) // 30 seconds
-
-    return () => clearInterval(interval)
   }, [])
 
   const loadUserData = () => {

@@ -555,7 +555,7 @@
 }
 
 .category-dropdown option {
-  background: var(--black);
+  background: var(--hot-pink);
   color: var(--white);
   padding: 10px;
   font-weight: 600;
@@ -1062,54 +1062,6 @@
 
 .answer-button.multi-select.selected:hover {
   background: rgba(0, 217, 255, 0.3);
-}
-
-/* Motivational Quotes */
-.motivation-quotes {
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.quote-bubble {
-  position: absolute;
-  background: rgba(255, 20, 147, 0.1);
-  border: 2px solid rgba(255, 105, 180, 0.3);
-  border-radius: 15px;
-  padding: 15px 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--barbie-pink);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  animation: float 6s ease-in-out infinite;
-  white-space: nowrap;
-}
-
-.quote-bubble.rotate-1 { transform: rotate(-5deg); }
-.quote-bubble.rotate-2 { transform: rotate(5deg); }
-.quote-bubble.rotate-3 { transform: rotate(-8deg); }
-.quote-bubble.rotate-4 { transform: rotate(8deg); }
-.quote-bubble.rotate-5 { transform: rotate(-3deg); }
-.quote-bubble.rotate-6 { transform: rotate(3deg); }
-
-.quote-bubble.top-left { top: 10%; left: 15%; }
-.quote-bubble.top-right { top: 15%; right: 15%; }
-.quote-bubble.middle-left { top: 40%; left: 12%; }
-.quote-bubble.middle-right { top: 45%; right: 12%; }
-.quote-bubble.bottom-left { bottom: 20%; left: 15%; }
-.quote-bubble.bottom-right { bottom: 25%; right: 15%; }
-.quote-bubble.top-center { top: 5%; left: 50%; transform: translateX(-50%) rotate(-3deg); }
-.quote-bubble.bottom-center { bottom: 10%; left: 50%; transform: translateX(-50%) rotate(3deg); }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
 }
 
 /* Achievement Notifications */
