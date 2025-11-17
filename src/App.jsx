@@ -452,6 +452,25 @@ function App() {
 
   return (
     <div className="app">
+      {/* Floating Background Emojis */}
+      <div className="floating-emojis">
+        <span className="emoji emoji-1">👑</span>
+        <span className="emoji emoji-2">💖</span>
+        <span className="emoji emoji-3">✨</span>
+        <span className="emoji emoji-4">🚗</span>
+        <span className="emoji emoji-5">💅</span>
+        <span className="emoji emoji-6">🌟</span>
+        <span className="emoji emoji-7">💕</span>
+        <span className="emoji emoji-8">🦋</span>
+        <span className="emoji emoji-9">💎</span>
+        <span className="emoji emoji-10">🌸</span>
+        <span className="emoji emoji-11">👑</span>
+        <span className="emoji emoji-12">✨</span>
+        <span className="emoji emoji-13">💖</span>
+        <span className="emoji emoji-14">🚗</span>
+        <span className="emoji emoji-15">💅</span>
+      </div>
+
       {/* Sound Toggle - Always visible except on login */}
       {gameState !== 'login' && (
         <button className="sound-toggle" onClick={toggleSound} title={soundEnabled ? 'Mute sounds' : 'Enable sounds'}>
