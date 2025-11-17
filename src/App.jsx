@@ -88,15 +88,20 @@ function App() {
   }
 
   const playSound = (type) => {
+    // DEBUG: Absolutely first thing - prove this function is called
+    console.log('🎵 playSound CALLED - type:', type, 'soundEnabled:', soundEnabled)
+
     if (!soundEnabled) {
-      console.log('Sound is disabled')
+      console.log('❌ Sound is DISABLED - returning early')
       return
     }
+
+    console.log('✅ Sound is ENABLED - proceeding to play')
 
     try {
       // Play random sound from the sound files array
       const randomSound = soundFiles[Math.floor(Math.random() * soundFiles.length)]
-      console.log('Playing sound:', randomSound, 'for type:', type)
+      console.log('🔊 Playing sound:', randomSound, 'for type:', type)
 
       const audio = new Audio(randomSound)
       audio.volume = 0.5 // Set volume to 50%
@@ -107,15 +112,18 @@ function App() {
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            console.log('Sound played successfully:', type)
+            console.log('✅ Sound PLAYED SUCCESSFULLY - type:', type)
           })
           .catch(err => {
-            console.error('Audio play failed:', err, 'Sound path:', randomSound)
+            console.error('❌ Audio play FAILED - type:', type, 'Error:', err, 'Path:', randomSound)
           })
+      } else {
+        console.log('⚠️ playPromise is undefined')
       }
 
       // Visual feedback with confetti
       if (type === 'achievement' || type === 'correct') {
+        console.log('🎉 playSound triggering confetti for type:', type)
         confetti({
           particleCount: 100,
           spread: 70,
@@ -123,7 +131,7 @@ function App() {
         })
       }
     } catch (error) {
-      console.error('Error in playSound:', error)
+      console.error('❌ EXCEPTION in playSound - type:', type, 'Error:', error)
     }
   }
 
@@ -266,7 +274,11 @@ function App() {
 
     if (isCorrect) {
       setScore(score + 1)
+      // DEBUG: Very visible check
+      document.title = `🔊 Sound: ${soundEnabled ? 'ON' : 'OFF'} - Calling playSound...`
+      console.log('BEFORE playSound - soundEnabled:', soundEnabled)
       playSound('correct')
+      console.log('AFTER playSound - called')
       fireConfetti()
     } else {
       playSound('wrong')
