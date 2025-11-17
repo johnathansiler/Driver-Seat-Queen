@@ -76,6 +76,11 @@
 .emoji-28 { left: 8%; top: 35%; animation: float1 19s infinite; animation-delay: -6s; }
 .emoji-29 { left: 48%; top: 60%; animation: float2 17s infinite; animation-delay: -8s; }
 .emoji-30 { left: 68%; top: 40%; animation: float3 20s infinite; animation-delay: -10s; }
+.emoji-31 { left: 33%; top: 65%; animation: float1 16s infinite; animation-delay: -12s; }
+.emoji-32 { left: 52%; top: 12%; animation: float2 21s infinite; animation-delay: -14s; }
+.emoji-33 { left: 82%; top: 42%; animation: float3 15s infinite; animation-delay: -16s; }
+.emoji-34 { left: 42%; top: 92%; animation: float1 18s infinite; animation-delay: -18s; }
+.emoji-35 { left: 95%; top: 55%; animation: float2 14s infinite; animation-delay: -20s; }
 
 /* Welcome Screen */
 /* Login Screen */

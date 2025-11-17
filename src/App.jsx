@@ -484,6 +484,11 @@ function App() {
         <span className="emoji emoji-28">👸</span>
         <span className="emoji emoji-29">🍾</span>
         <span className="emoji emoji-30">🎊</span>
+        <span className="emoji emoji-31">👑</span>
+        <span className="emoji emoji-32">✨</span>
+        <span className="emoji emoji-33">💖</span>
+        <span className="emoji emoji-34">🚗</span>
+        <span className="emoji emoji-35">💅</span>
       </div>
 
       {/* Sound Toggle - Always visible except on login */}
