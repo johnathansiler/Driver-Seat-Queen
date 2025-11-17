@@ -1,34 +1,61 @@
 # 🚀 Quick Start: Download Images in 5 Minutes
 
-## Step 1: Get API Keys (2 minutes)
+## Step 1: Get API Keys
 
-### Pexels (Recommended)
+### Option A: Google Images (BEST - Highest Quality) ⭐
+**Setup time: 10 minutes** | **100 images/day FREE**
+
+See detailed guide: **[GOOGLE-API-SETUP.md](GOOGLE-API-SETUP.md)**
+
+Quick version:
+1. Go to: https://console.cloud.google.com/
+2. Create project → Enable "Custom Search API"
+3. Get API key + Create Search Engine
+4. Copy both keys to script
+
+### Option B: Pexels (EASIEST - Quick Setup) ⚡
+**Setup time: 2 minutes** | **200 images/hour FREE**
+
 1. Go to: https://www.pexels.com/api/
 2. Click **"Get Started"**
 3. Sign up with email
 4. Copy your **API Key**
 
-### Unsplash (Optional - for backup)
+### Option C: Unsplash (BACKUP)
+**Setup time: 3 minutes** | **50 images/hour FREE**
+
 1. Go to: https://unsplash.com/developers
 2. Click **"Register as a developer"**
 3. Create new app
 4. Copy **Access Key**
+
+### Recommended: Use All Three!
+- Google for best quality (100/day)
+- Pexels as fallback (200/hour)
+- Unsplash as last resort (50/hour)
+- Script tries Google first, then Pexels, then Unsplash automatically!
 
 ## Step 2: Add Keys to Script (30 seconds)
 
 Open `download_images.py` in any text editor and find these lines:
 
 ```python
-UNSPLASH_API_KEY = "YOUR_UNSPLASH_ACCESS_KEY"
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"
+GOOGLE_SEARCH_ENGINE_ID = "YOUR_SEARCH_ENGINE_ID"
 PEXELS_API_KEY = "YOUR_PEXELS_API_KEY"
+UNSPLASH_API_KEY = "YOUR_UNSPLASH_ACCESS_KEY"
 ```
 
 Replace with your actual keys:
 
 ```python
-UNSPLASH_API_KEY = "paste_your_unsplash_key_here"
-PEXELS_API_KEY = "paste_your_pexels_key_here"
+GOOGLE_API_KEY = "AIzaSyC..."  # If using Google (recommended)
+GOOGLE_SEARCH_ENGINE_ID = "a1b2c3d4e..."  # If using Google
+PEXELS_API_KEY = "SvWRTahoo..."  # Already set! (you can keep this)
+UNSPLASH_API_KEY = "unQ_ug9IS..."  # Already set! (you can keep this)
 ```
+
+**Note**: Pexels and Unsplash keys are already in the script! You just need to add Google keys for best results.
 
 **Save the file!**
 
@@ -72,25 +99,37 @@ The script will:
 📊 Total images to download: 75
 ============================================================
 
+📡 Configured APIs:
+  ✅ Google Custom Search (PRIMARY - 100 queries/day)
+  ✅ Pexels (FALLBACK - 200 requests/hour)
+  ✅ Unsplash (FALLBACK - 50 requests/hour)
+
 [1/75] stop-sign-octagon.jpg
-   🔍 Searching Pexels: 'red octagon stop sign traffic'
-   ⬇️  Downloading from Pexels...
+   🔍 Searching Google Images: 'red octagon stop sign traffic'
+   ⬇️  Downloading from Google Images...
    ✅ Saved: stop-sign-octagon.jpg
 
 [2/75] yield-sign-triangle.jpg
-   🔍 Searching Pexels: 'yield sign triangle red white traffic'
-   ⬇️  Downloading from Pexels...
+   🔍 Searching Google Images: 'yield sign triangle red white traffic'
+   ⬇️  Downloading from Google Images...
    ✅ Saved: yield-sign-triangle.jpg
 
-... (continues for all images)
+... (Google downloads 100 images)
+
+[101/175] some-image.jpg
+   🔍 Searching Google Images: '...'
+   ⚠️  Google API quota exceeded (100/day limit)
+   🔄 Trying Pexels...
+   ⬇️  Downloading from Pexels...
+   ✅ Saved: some-image.jpg
 
 ============================================================
 📊 DOWNLOAD SUMMARY
 ============================================================
-✅ Successful: 68
+✅ Successful: 168
 ⏭️  Skipped (already exist): 0
 ❌ Failed: 7
-📁 Total in folder: 68
+📁 Total in folder: 168
 
 🎉 Done! Images ready to use in your app!
 ```

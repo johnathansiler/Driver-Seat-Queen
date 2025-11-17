@@ -1,7 +1,8 @@
 """
 Image Downloader for Driver's Seat Queen
 Downloads educational images for driving permit test questions
-Uses free image APIs: Unsplash and Pexels
+Primary: Google Custom Search API
+Fallback: Pexels and Unsplash APIs
 """
 
 import os
@@ -14,11 +15,17 @@ from pathlib import Path
 IMAGES_DIR = Path("public/images")
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
-# API Keys - Get free keys from:
-# Unsplash: https://unsplash.com/developers
-# Pexels: https://www.pexels.com/api/
-UNSPLASH_API_KEY = "YOUR_UNSPLASH_ACCESS_KEY"  # Free - 50 requests/hour
-PEXELS_API_KEY = "YOUR_PEXELS_API_KEY"  # Free - 200 requests/hour
+# API Keys
+# Google Custom Search API - Get free keys from:
+# 1. Google Custom Search: https://developers.google.com/custom-search/v1/overview
+# 2. Get API Key: https://console.cloud.google.com/apis/credentials
+# 3. Create Search Engine: https://programmablesearchengine.google.com/
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"  # Free - 100 queries/day
+GOOGLE_SEARCH_ENGINE_ID = "YOUR_SEARCH_ENGINE_ID"  # Custom Search Engine ID
+
+# Fallback APIs
+UNSPLASH_API_KEY = "unQ_ug9IS77J333DIJvN6L_lz5BMatvvyMMUjGbsb_8"  # Free - 50 requests/hour
+PEXELS_API_KEY = "SvWRTahoo6ZoO9gkEkzKEtQoiBcHtgL5Fy7tAxDGBV0mmWmGThf0TugL"  # Free - 200 requests/hour
 
 # Image search terms mapped to filenames
 IMAGE_SEARCHES = {
@@ -144,6 +151,71 @@ IMAGE_SEARCHES = {
 }
 
 
+def download_from_google(search_query, filename, max_retries=3):
+    """Download image from Google Custom Search API"""
+    if GOOGLE_API_KEY == "YOUR_GOOGLE_API_KEY" or GOOGLE_SEARCH_ENGINE_ID == "YOUR_SEARCH_ENGINE_ID":
+        print("   ⚠️  Google API not configured, skipping...")
+        return False
+
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        "key": GOOGLE_API_KEY,
+        "cx": GOOGLE_SEARCH_ENGINE_ID,
+        "q": search_query,
+        "searchType": "image",
+        "num": 1,
+        "imgSize": "large",
+        "imgType": "photo",
+        "safe": "active",
+        "rights": "cc_publicdomain|cc_attribute|cc_sharealike"  # Free to use images
+    }
+
+    for attempt in range(max_retries):
+        try:
+            print(f"   🔍 Searching Google Images: '{search_query}'")
+            response = requests.get(url, params=params, timeout=10)
+            response.raise_for_status()
+
+            data = response.json()
+
+            # Check for API errors
+            if "error" in data:
+                error_msg = data["error"].get("message", "Unknown error")
+                if "quota" in error_msg.lower():
+                    print(f"   ⚠️  Google API quota exceeded (100/day limit)")
+                else:
+                    print(f"   ❌ Google API error: {error_msg}")
+                return False
+
+            if "items" in data and len(data["items"]) > 0:
+                image_url = data["items"][0]["link"]
+
+                # Download the image
+                print(f"   ⬇️  Downloading from Google Images...")
+                img_response = requests.get(image_url, timeout=15, headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                })
+                img_response.raise_for_status()
+
+                # Save the image
+                filepath = IMAGES_DIR / filename
+                with open(filepath, 'wb') as f:
+                    f.write(img_response.content)
+
+                print(f"   ✅ Saved: {filename}")
+                return True
+            else:
+                print(f"   ⚠️  No results found on Google Images")
+                return False
+
+        except requests.exceptions.RequestException as e:
+            print(f"   ❌ Error (attempt {attempt + 1}/{max_retries}): {e}")
+            if attempt < max_retries - 1:
+                time.sleep(2)
+
+    return False
+
+
 def download_from_unsplash(search_query, filename, max_retries=3):
     """Download image from Unsplash API"""
     if UNSPLASH_API_KEY == "YOUR_UNSPLASH_ACCESS_KEY":
@@ -250,13 +322,28 @@ def main():
     print()
 
     # Check API keys
-    if UNSPLASH_API_KEY == "YOUR_UNSPLASH_ACCESS_KEY" and PEXELS_API_KEY == "YOUR_PEXELS_API_KEY":
+    google_configured = GOOGLE_API_KEY != "YOUR_GOOGLE_API_KEY" and GOOGLE_SEARCH_ENGINE_ID != "YOUR_SEARCH_ENGINE_ID"
+    pexels_configured = PEXELS_API_KEY != "YOUR_PEXELS_API_KEY"
+    unsplash_configured = UNSPLASH_API_KEY != "YOUR_UNSPLASH_ACCESS_KEY"
+
+    if not (google_configured or pexels_configured or unsplash_configured):
         print("❌ ERROR: Please set at least one API key in the script!")
         print()
         print("Get free API keys from:")
-        print("  • Unsplash: https://unsplash.com/developers")
+        print("  • Google Custom Search: https://console.cloud.google.com/apis/credentials")
         print("  • Pexels: https://www.pexels.com/api/")
+        print("  • Unsplash: https://unsplash.com/developers")
         return
+
+    # Show which APIs are configured
+    print("📡 Configured APIs:")
+    if google_configured:
+        print("  ✅ Google Custom Search (PRIMARY - 100 queries/day)")
+    if pexels_configured:
+        print("  ✅ Pexels (FALLBACK - 200 requests/hour)")
+    if unsplash_configured:
+        print("  ✅ Unsplash (FALLBACK - 50 requests/hour)")
+    print()
 
     successful = 0
     failed = 0
@@ -272,17 +359,28 @@ def main():
             skipped += 1
             continue
 
-        # Try Pexels first (higher rate limit), then Unsplash
+        # Try Google first (primary), then fallback to Pexels and Unsplash
         success = False
 
-        if PEXELS_API_KEY != "YOUR_PEXELS_API_KEY":
+        # 1. Try Google Custom Search (PRIMARY)
+        if google_configured:
+            success = download_from_google(search_query, filename)
+            if success:
+                successful += 1
+            else:
+                time.sleep(0.5)
+
+        # 2. Try Pexels (FALLBACK 1)
+        if not success and pexels_configured:
+            print(f"   🔄 Trying Pexels...")
             success = download_from_pexels(search_query, filename)
             if success:
                 successful += 1
             else:
-                time.sleep(1)  # Rate limiting
+                time.sleep(0.5)
 
-        if not success and UNSPLASH_API_KEY != "YOUR_UNSPLASH_ACCESS_KEY":
+        # 3. Try Unsplash (FALLBACK 2)
+        if not success and unsplash_configured:
             print(f"   🔄 Trying Unsplash...")
             success = download_from_unsplash(search_query, filename)
             if success:
