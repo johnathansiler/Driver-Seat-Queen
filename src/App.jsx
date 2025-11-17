@@ -7,19 +7,19 @@ import { ACHIEVEMENTS, checkNewAchievements, getRandomQuote } from './data/achie
 import * as storage from './utils/storage'
 
 function App() {
-  // Sound files array
+  // Sound files array - use BASE_URL for correct paths in production
   const soundFiles = [
-    '/sounds/ABSOLUTELY - AUDIO FROM JAYUZUMI.COM.mp3',
-    '/sounds/barbia.mp3',
-    '/sounds/calling-all-barbz-nicki-minaj.mp3',
-    '/sounds/I FEEL LIKE WE\'VE ELEVATED - AUDIO FROM JAYUZUMI.COM.mp3',
-    '/sounds/nicki-minaj-laughving.mp3',
-    '/sounds/nickis-kiss-kiss-sounds.mp3',
-    '/sounds/oh-my-gaawwd-nicki-minaj.mp3',
-    '/sounds/pink-wig-thick-ass-give-em-whiplash.mp3',
-    '/sounds/to-fly.mp3',
-    '/sounds/videoleap-9cde839e-2d8d-4945-a485-23d7f297cd9e-online-audio-converter.mp3',
-    '/sounds/YEAH - AUDIO FROM JAYUZUMI.COM.mp3'
+    `${import.meta.env.BASE_URL}sounds/ABSOLUTELY - AUDIO FROM JAYUZUMI.COM.mp3`,
+    `${import.meta.env.BASE_URL}sounds/barbia.mp3`,
+    `${import.meta.env.BASE_URL}sounds/calling-all-barbz-nicki-minaj.mp3`,
+    `${import.meta.env.BASE_URL}sounds/I FEEL LIKE WE\'VE ELEVATED - AUDIO FROM JAYUZUMI.COM.mp3`,
+    `${import.meta.env.BASE_URL}sounds/nicki-minaj-laughving.mp3`,
+    `${import.meta.env.BASE_URL}sounds/nickis-kiss-kiss-sounds.mp3`,
+    `${import.meta.env.BASE_URL}sounds/oh-my-gaawwd-nicki-minaj.mp3`,
+    `${import.meta.env.BASE_URL}sounds/pink-wig-thick-ass-give-em-whiplash.mp3`,
+    `${import.meta.env.BASE_URL}sounds/to-fly.mp3`,
+    `${import.meta.env.BASE_URL}sounds/videoleap-9cde839e-2d8d-4945-a485-23d7f297cd9e-online-audio-converter.mp3`,
+    `${import.meta.env.BASE_URL}sounds/YEAH - AUDIO FROM JAYUZUMI.COM.mp3`
   ]
 
   // Game State: welcome, mode-select, quiz, study, practice, review, results, dashboard, flashcards
@@ -63,7 +63,11 @@ function App() {
   useEffect(() => {
     if (gameState === 'study' || gameState === 'flashcards') {
       const filtered = categoryFilter === 'all' ? questions : questions.filter(q => q.category === categoryFilter)
-      if (currentQuestionIndex >= filtered.length && filtered.length > 0) {
+      if (filtered.length === 0 && categoryFilter !== 'all') {
+        // Reset to 'all' if current filter has no questions
+        setCategoryFilter('all')
+        setCurrentQuestionIndex(0)
+      } else if (currentQuestionIndex >= filtered.length && filtered.length > 0) {
         setCurrentQuestionIndex(0)
       }
     }
@@ -458,6 +462,17 @@ function App() {
         </div>
       )}
 
+      {/* Quiz Error - No Questions */}
+      {gameState === 'quiz' && !currentQuestion && (
+        <div className="error-screen">
+          <h2>Oops! No questions available 💔</h2>
+          <p>Something went wrong loading the questions, babe!</p>
+          <button className="home-button" onClick={() => setGameState('welcome')}>
+            BACK TO HOME 🏠
+          </button>
+        </div>
+      )}
+
       {/* Quiz/Practice/Review Mode */}
       {gameState === 'quiz' && currentQuestion && (
         <div className="quiz-screen">
@@ -522,6 +537,20 @@ function App() {
               {currentQuestionIndex < questions.length - 1 ? 'NEXT QUESTION →' : 'SEE MY RESULTS 👑'}
             </button>
           )}
+        </div>
+      )}
+
+      {/* Study Error - No Questions */}
+      {gameState === 'study' && !studyQuestion && (
+        <div className="error-screen">
+          <h2>No questions in this category 💔</h2>
+          <p>Try selecting "All Categories" bestie!</p>
+          <button className="home-button" onClick={() => {
+            setCategoryFilter('all')
+            setGameState('welcome')
+          }}>
+            BACK TO HOME 🏠
+          </button>
         </div>
       )}
 
@@ -703,6 +732,20 @@ function App() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Flashcard Error - No Questions */}
+      {gameState === 'flashcards' && !studyQuestion && (
+        <div className="error-screen">
+          <h2>No flashcards in this category 💔</h2>
+          <p>Try selecting "All Categories" bestie!</p>
+          <button className="home-button" onClick={() => {
+            setCategoryFilter('all')
+            setGameState('welcome')
+          }}>
+            BACK TO HOME 🏠
+          </button>
         </div>
       )}
 
