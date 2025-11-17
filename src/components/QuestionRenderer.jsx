@@ -33,7 +33,15 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
               <button
                 key={index}
                 className={buttonClass}
-                onClick={() => !isStudyMode && onAnswer(index)}
+                onClick={() => {
+                  console.log('🖱️ Multiple choice button clicked - index:', index, 'isStudyMode:', isStudyMode)
+                  if (!isStudyMode) {
+                    console.log('✅ Calling onAnswer with index:', index)
+                    onAnswer(index)
+                  } else {
+                    console.log('⚠️ Study mode active, not calling onAnswer')
+                  }
+                }}
                 disabled={(selectedAnswer !== null && !isStudyMode) || isStudyMode}
               >
                 <span className="answer-letter">{String.fromCharCode(65 + index)}</span>
@@ -80,7 +88,15 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
             <button
               key={index}
               className={buttonClass}
-              onClick={() => !isStudyMode && onAnswer(index)}
+              onClick={() => {
+                console.log('🖱️ True/False button clicked - index:', index, 'option:', option, 'isStudyMode:', isStudyMode)
+                if (!isStudyMode) {
+                  console.log('✅ Calling onAnswer with index:', index)
+                  onAnswer(index)
+                } else {
+                  console.log('⚠️ Study mode active, not calling onAnswer')
+                }
+              }}
               disabled={(selectedAnswer !== null && !isStudyMode) || isStudyMode}
             >
               <span className="tf-icon">{option === 'True' ? '✓' : '✗'}</span>

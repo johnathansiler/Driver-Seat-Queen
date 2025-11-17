@@ -256,23 +256,35 @@ function App() {
 
   // Question Handling
   const handleAnswerClick = (answerIndex, matchingData = null) => {
-    if (selectedAnswer !== null) return
+    console.log('🎯 handleAnswerClick CALLED - answerIndex:', answerIndex, 'matchingData:', matchingData)
+
+    if (selectedAnswer !== null) {
+      console.log('⚠️ selectedAnswer already set, returning early:', selectedAnswer)
+      return
+    }
 
     setSelectedAnswer(answerIndex)
     const currentQuestion = questions[currentQuestionIndex]
     const questionType = currentQuestion.type || 'multiple-choice'
+    console.log('📝 Question type:', questionType, 'Question:', currentQuestion.question)
 
     let isCorrect = false
     if (questionType === 'multiple-choice') {
       isCorrect = answerIndex === currentQuestion.correct
+      console.log('Multiple choice - answerIndex:', answerIndex, 'correct:', currentQuestion.correct, 'isCorrect:', isCorrect)
     } else if (questionType === 'true-false') {
       const correctIndex = currentQuestion.correct ? 0 : 1
       isCorrect = answerIndex === correctIndex
+      console.log('True/False - answerIndex:', answerIndex, 'correctIndex:', correctIndex, 'isCorrect:', isCorrect)
     } else if (questionType === 'matching' || questionType === 'fill-in-blank' || questionType === 'multiple-select') {
       isCorrect = answerIndex === 1 // Passed from QuestionRenderer (1 = correct, 0 = incorrect)
+      console.log('Other type - answerIndex:', answerIndex, 'isCorrect:', isCorrect)
     }
 
+    console.log('✨ FINAL isCorrect value:', isCorrect)
+
     if (isCorrect) {
+      console.log('🎉 ANSWER IS CORRECT - About to play sound and confetti')
       setScore(score + 1)
       // DEBUG: Very visible check
       document.title = `🔊 Sound: ${soundEnabled ? 'ON' : 'OFF'} - Calling playSound...`
@@ -281,6 +293,7 @@ function App() {
       console.log('AFTER playSound - called')
       fireConfetti()
     } else {
+      console.log('❌ ANSWER IS WRONG')
       playSound('wrong')
       // Save wrong answer for review
       storage.saveWrongAnswer(currentQuestion.id)
