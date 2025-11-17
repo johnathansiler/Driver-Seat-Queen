@@ -435,14 +435,6 @@ export const floridaQuestions = [
   },
   // TRUE/FALSE QUESTIONS
   {
-    id: 52,
-    type: 'true-false',
-    category: 'road-rules',
-    question: "In Florida, you must always wear your seatbelt, even in the back seat.",
-    correct: true,
-    explanation: "True! Florida law requires all vehicle occupants to wear seatbelts, regardless of seating position."
-  },
-  {
     id: 53,
     type: 'true-false',
     category: 'road-signs',
@@ -766,20 +758,6 @@ export const floridaQuestions = [
 
   // PAVEMENT MARKINGS QUESTIONS
   {
-    id: 96,
-    type: 'multiple-choice',
-    category: 'pavement-markings',
-    question: "🛣️ What does a solid yellow line on your side of the center line mean?",
-    options: [
-      "You may pass if safe",
-      "Do not pass",
-      "Passing zone ends ahead",
-      "Two-way traffic"
-    ],
-    correct: 1,
-    explanation: "A solid yellow line on your side means you cannot pass. If there's a broken yellow line on your side, you may pass when safe."
-  },
-  {
     id: 97,
     type: 'multiple-choice',
     category: 'pavement-markings',
@@ -832,20 +810,6 @@ export const floridaQuestions = [
 
   // TRAFFIC SIGNALS QUESTIONS
   {
-    id: 101,
-    type: 'multiple-choice',
-    category: 'traffic-signals',
-    question: "🚦 What must you do at a flashing yellow traffic light?",
-    options: [
-      "Stop completely",
-      "Slow down and proceed with caution",
-      "Speed up to clear the intersection",
-      "Treat it like a stop sign"
-    ],
-    correct: 1,
-    explanation: "A flashing yellow light means slow down and proceed with caution. Look for cross traffic and pedestrians."
-  },
-  {
     id: 102,
     type: 'multiple-choice',
     category: 'traffic-signals',
@@ -858,28 +822,6 @@ export const floridaQuestions = [
     ],
     correct: 2,
     explanation: "A flashing red light means the same as a stop sign: come to a complete stop, yield to traffic and pedestrians, then proceed when safe."
-  },
-  {
-    id: 103,
-    type: 'true-false',
-    category: 'traffic-signals',
-    question: "🚦 You can turn right on a red light in Florida after stopping, unless a sign prohibits it.",
-    correct: true,
-    explanation: "True! In Florida, you may turn right on red after coming to a complete stop and yielding to traffic and pedestrians, unless a 'No Turn on Red' sign is posted."
-  },
-  {
-    id: 104,
-    type: 'multiple-choice',
-    category: 'traffic-signals',
-    question: "🚦 What does a green arrow traffic signal mean?",
-    options: [
-      "Proceed with caution",
-      "You may proceed in the direction of the arrow (protected turn)",
-      "Yield to oncoming traffic",
-      "Signal is malfunctioning"
-    ],
-    correct: 1,
-    explanation: "A green arrow gives you the right-of-way to make a protected turn in the direction of the arrow. Oncoming traffic should be stopped."
   },
   {
     id: 105,
@@ -897,20 +839,6 @@ export const floridaQuestions = [
   },
 
   // SAFE DRIVING QUESTIONS
-  {
-    id: 106,
-    type: 'multiple-choice',
-    category: 'safe-driving',
-    question: "🦺 What is the minimum safe following distance in good weather?",
-    options: [
-      "1 second",
-      "2 seconds",
-      "3 seconds",
-      "5 seconds"
-    ],
-    correct: 2,
-    explanation: "Use the 3-second rule in good weather. Pick a fixed point, and when the car ahead passes it, you should be able to count to 3 before reaching that same point."
-  },
   {
     id: 107,
     type: 'multiple-choice',
@@ -995,20 +923,6 @@ export const floridaQuestions = [
     explanation: "A white cane or guide dog indicates the person is blind or visually impaired. Always stop and yield the right-of-way."
   },
   {
-    id: 114,
-    type: 'multiple-choice',
-    category: 'sharing-road',
-    question: "🚴 When must you yield to pedestrians in a crosswalk?",
-    options: [
-      "Only at marked crosswalks",
-      "Only when a signal tells you to",
-      "At both marked and unmarked crosswalks",
-      "Never, pedestrians must yield to cars"
-    ],
-    correct: 2,
-    explanation: "You must yield to pedestrians in both marked and unmarked crosswalks at intersections. Pedestrians always have the right-of-way in crosswalks."
-  },
-  {
     id: 115,
     type: 'multiple-select',
     category: 'sharing-road',
@@ -1025,28 +939,6 @@ export const floridaQuestions = [
   },
 
   // VEHICLE EQUIPMENT QUESTIONS
-  {
-    id: 116,
-    type: 'multiple-choice',
-    category: 'vehicle-equipment',
-    question: "🔧 When must you use your headlights in Florida?",
-    options: [
-      "Only at night",
-      "From sunset to sunrise and during rain",
-      "Only in heavy rain",
-      "Anytime you want"
-    ],
-    correct: 1,
-    explanation: "Florida law requires headlights from sunset to sunrise and when visibility is less than 1,000 feet (like during rain, fog, or smoke)."
-  },
-  {
-    id: 117,
-    type: 'true-false',
-    category: 'vehicle-equipment',
-    question: "🔧 You must wear a seat belt in Florida, regardless of where you're sitting in the vehicle.",
-    correct: true,
-    explanation: "True! Florida law requires all passengers and the driver to wear seat belts, no matter where they sit in the vehicle."
-  },
   {
     id: 118,
     type: 'multiple-choice',
@@ -1074,14 +966,6 @@ export const floridaQuestions = [
     ],
     correct: 2,
     explanation: "A spongy brake pedal may indicate air in brake lines, low brake fluid, or other brake problems. Have it inspected by a professional immediately."
-  },
-  {
-    id: 120,
-    type: 'fill-in-blank',
-    category: 'vehicle-equipment',
-    question: "🔧 At what age must children use a child restraint device (car seat or booster) in Florida? (Under age X)",
-    correctAnswer: "6",
-    explanation: "Florida law requires children under age 6 to be in a crash-tested, federally approved child restraint device."
   },
 
   // EMERGENCY SITUATIONS QUESTIONS
@@ -1135,20 +1019,6 @@ export const floridaQuestions = [
     ],
     correctAnswers: [0, 2, 3, 4],
     explanation: "During a blowout: grip the wheel firmly, DON'T brake hard (you'll lose control), ease off the gas to slow down, pull off safely, and use hazard lights."
-  },
-  {
-    id: 125,
-    type: 'multiple-choice',
-    category: 'emergency-situations',
-    question: "🚨 What should you do when an emergency vehicle approaches with lights and sirens?",
-    options: [
-      "Speed up to get out of the way",
-      "Stop immediately wherever you are",
-      "Pull over to the right and stop",
-      "Change lanes quickly"
-    ],
-    correct: 2,
-    explanation: "When an emergency vehicle approaches with lights/sirens, pull over to the right side of the road and stop until it passes."
   },
 
   // MORE PAVEMENT MARKINGS QUESTIONS (Adding 25 more)
@@ -1537,20 +1407,6 @@ export const floridaQuestions = [
     explanation: "False! Even with a green light, you must still check for pedestrians in the crosswalk and vehicles already in the intersection. Green means 'proceed when safe.'"
   },
   {
-    id: 157,
-    type: 'multiple-choice',
-    category: 'traffic-signals',
-    question: "🚦 What should you do if a traffic signal is completely dark (not working)?",
-    options: [
-      "Proceed normally",
-      "Treat it as a flashing yellow light",
-      "Treat it as a four-way stop",
-      "Speed through quickly"
-    ],
-    correct: 2,
-    explanation: "When traffic signals are not working, treat the intersection as an all-way stop. Stop, yield to vehicles that arrived first, then proceed when safe."
-  },
-  {
     id: 158,
     type: 'multiple-choice',
     category: 'traffic-signals',
@@ -1585,21 +1441,6 @@ export const floridaQuestions = [
     question: "🚦 How many seconds is a yellow light typically timed for at intersections? (number only)",
     correctAnswer: "3",
     explanation: "Yellow lights are typically timed for 3-5 seconds, depending on the speed limit and intersection size, to give drivers time to stop safely."
-  },
-  {
-    id: 161,
-    type: 'multiple-select',
-    category: 'traffic-signals',
-    question: "🚦 When can you legally proceed through a red light? (Select all that apply)",
-    options: [
-      "When turning right after stopping (unless prohibited)",
-      "When turning left from one-way to one-way after stopping",
-      "When no other cars are around",
-      "When following an emergency vehicle",
-      "When the light has been red for over 5 minutes"
-    ],
-    correctAnswers: [0, 1],
-    explanation: "You may turn right on red after stopping (unless prohibited), or left on red from one-way to one-way. Never run a red light just because no cars are around."
   },
   {
     id: 162,
@@ -1702,14 +1543,6 @@ export const floridaQuestions = [
     explanation: "A yellow X means the lane is about to close. Move out of this lane as soon as safely possible."
   },
   {
-    id: 170,
-    type: 'fill-in-blank',
-    category: 'traffic-signals',
-    question: "🚦 How far away must you stop from a school bus with flashing red lights? (number of feet only)",
-    correctAnswer: "20",
-    explanation: "You must stop at least 20 feet away from a school bus with flashing red lights and remain stopped until the lights stop flashing."
-  },
-  {
     id: 171,
     type: 'true-false',
     category: 'traffic-signals',
@@ -1723,13 +1556,13 @@ export const floridaQuestions = [
     category: 'traffic-signals',
     question: "🚦 What do flashing blue lights on a vehicle mean?",
     options: [
-      "Police or emergency vehicle",
+      "Police or law enforcement vehicle",
       "Volunteer firefighter or EMT responding to emergency",
       "Road maintenance vehicle",
       "School bus"
     ],
-    correct: 1,
-    explanation: "Flashing blue lights typically indicate a volunteer firefighter or EMT responding to an emergency. Yield and give them space."
+    correct: 0,
+    explanation: "Flashing blue lights in Florida indicate a police or law enforcement vehicle. Volunteer firefighters and EMTs use red lights. Always yield and pull over for emergency vehicles."
   },
   {
     id: 173,
@@ -1776,20 +1609,6 @@ export const floridaQuestions = [
   },
 
   // MORE SAFE DRIVING QUESTIONS (Adding 25 more)
-  {
-    id: 176,
-    type: 'multiple-choice',
-    category: 'safe-driving',
-    question: "🦺 What is the 'Move Over Law' in Florida?",
-    options: [
-      "Move over for bicycles",
-      "Move over one lane or slow down for stopped emergency/service vehicles",
-      "Move over for school buses",
-      "Move over for slow drivers"
-    ],
-    correct: 1,
-    explanation: "Florida's Move Over Law requires drivers to move over a lane (if safe) or slow to 20 mph below the speed limit when approaching stopped emergency, sanitation, utility, or tow vehicles with flashing lights."
-  },
   {
     id: 177,
     type: 'true-false',
@@ -2082,42 +1901,6 @@ export const floridaQuestions = [
     explanation: "Overdriving your headlights means driving so fast that your stopping distance is longer than the distance you can see ahead with your lights."
   },
   {
-    id: 201,
-    type: 'multiple-choice',
-    category: 'sharing-road',
-    question: "🚴 When passing a bicycle in Florida, you must give at least:",
-    options: [
-      "1 foot of clearance",
-      "2 feet of clearance",
-      "3 feet of clearance",
-      "4 feet of clearance"
-    ],
-    correct: 2,
-    explanation: "Florida law requires drivers to give at least 3 feet of clearance when passing a bicycle."
-  },
-  {
-    id: 202,
-    type: 'true-false',
-    category: 'sharing-road',
-    question: "🚴 Bicyclists have the same rights and responsibilities as motor vehicle drivers.",
-    correct: true,
-    explanation: "True! Bicyclists must follow the same traffic laws as motor vehicles and have the same rights to use the road."
-  },
-  {
-    id: 203,
-    type: 'multiple-choice',
-    category: 'sharing-road',
-    question: "🚶 Who has the right-of-way at an unmarked crosswalk?",
-    options: [
-      "Vehicles always have the right-of-way",
-      "Pedestrians always have the right-of-way",
-      "Whoever arrives first",
-      "There are no rules for unmarked crosswalks"
-    ],
-    correct: 1,
-    explanation: "Pedestrians have the right-of-way at both marked and unmarked crosswalks. Drivers must yield to pedestrians crossing the road."
-  },
-  {
     id: 204,
     type: 'multiple-choice',
     category: 'sharing-road',
@@ -2158,14 +1941,6 @@ export const floridaQuestions = [
     ],
     correct: 1,
     explanation: "You must stop for a school bus when its stop arm is extended and red lights are flashing, regardless of which direction you're traveling (unless separated by a physical barrier)."
-  },
-  {
-    id: 207,
-    type: 'true-false',
-    category: 'sharing-road',
-    question: "🚌 You must stop at least 20 feet away from a stopped school bus with flashing red lights.",
-    correct: true,
-    explanation: "True! You must stop at least 20 feet from a school bus displaying flashing red lights and a stop sign."
   },
   {
     id: 208,
@@ -2440,14 +2215,6 @@ export const floridaQuestions = [
     explanation: "The 'penny test': Insert a penny into the tread with Lincoln's head upside down. If you can see all of Lincoln's head, your tires need replacing."
   },
   {
-    id: 230,
-    type: 'true-false',
-    category: 'vehicle-equipment',
-    question: "🔧 All passengers in a vehicle must wear seat belts, regardless of seating position.",
-    correct: true,
-    explanation: "True! Florida law requires all passengers to wear seat belts, whether in the front or back seat."
-  },
-  {
     id: 231,
     type: 'multiple-choice',
     category: 'vehicle-equipment',
@@ -2628,20 +2395,6 @@ export const floridaQuestions = [
     explanation: "True! Airbags are required safety equipment. They can only be deactivated with proper authorization (e.g., medical exemption)."
   },
   {
-    id: 246,
-    type: 'multiple-choice',
-    category: 'vehicle-equipment',
-    question: "🔧 What is the proper following distance to maintain your visibility?",
-    options: [
-      "1 second",
-      "At least 3-4 seconds",
-      "6 inches",
-      "As close as possible"
-    ],
-    correct: 1,
-    explanation: "Maintain at least a 3-4 second following distance in good conditions. Increase this in bad weather or at higher speeds."
-  },
-  {
     id: 247,
     type: 'multiple-choice',
     category: 'vehicle-equipment',
@@ -2692,20 +2445,6 @@ export const floridaQuestions = [
     explanation: "Studded tires are not permitted in Florida as they damage road surfaces and are unnecessary in Florida's climate."
   },
   {
-    id: 251,
-    type: 'multiple-choice',
-    category: 'emergency-situations',
-    question: "🚨 If you have a tire blowout while driving, you should:",
-    options: [
-      "Brake hard immediately",
-      "Grip steering wheel firmly, ease off gas, and brake gently",
-      "Speed up to maintain control",
-      "Turn sharply to the side of the road"
-    ],
-    correct: 1,
-    explanation: "During a blowout, grip the steering wheel firmly, gradually ease off the gas pedal, and brake gently once you have control. Don't brake hard or turn sharply."
-  },
-  {
     id: 252,
     type: 'true-false',
     category: 'emergency-situations',
@@ -2748,20 +2487,6 @@ export const floridaQuestions = [
     question: "🚨 Hydroplaning occurs when your tires lose contact with the road due to water.",
     correct: true,
     explanation: "True! Hydroplaning happens when water builds up in front of your tires faster than the weight of your vehicle can push it away, causing loss of traction."
-  },
-  {
-    id: 256,
-    type: 'multiple-choice',
-    category: 'emergency-situations',
-    question: "🚨 If you start to hydroplane, you should:",
-    options: [
-      "Brake hard to slow down",
-      "Accelerate to get through the water",
-      "Ease off the gas and steer straight until you regain traction",
-      "Turn the wheel sharply"
-    ],
-    correct: 2,
-    explanation: "When hydroplaning, ease off the gas pedal and hold the steering wheel straight until you regain traction. Don't brake or turn sharply."
   },
   {
     id: 257,
@@ -2814,14 +2539,6 @@ export const floridaQuestions = [
     explanation: "First check for injuries and call 911 if anyone is hurt. Then move vehicles out of traffic if possible, exchange information, and report to police if required."
   },
   {
-    id: 261,
-    type: 'true-false',
-    category: 'emergency-situations',
-    question: "🚨 You must report any accident involving injury, death, or property damage over $500.",
-    correct: true,
-    explanation: "True! Florida law requires you to report any crash involving injury, death, or property damage exceeding $500 to law enforcement."
-  },
-  {
     id: 262,
     type: 'multiple-choice',
     category: 'emergency-situations',
@@ -2870,28 +2587,6 @@ export const floridaQuestions = [
     ],
     correct: 1,
     explanation: "Pull over safely, turn off the engine, and wait for it to cool completely before checking coolant. Never remove the radiator cap when hot - it can cause severe burns."
-  },
-  {
-    id: 266,
-    type: 'multiple-choice',
-    category: 'emergency-situations',
-    question: "🚨 If you see an emergency vehicle with flashing lights approaching from behind, you must:",
-    options: [
-      "Speed up to get out of the way",
-      "Stop immediately wherever you are",
-      "Pull over to the right and stop",
-      "Change lanes to the left"
-    ],
-    correct: 2,
-    explanation: "Pull over to the right edge of the road and stop until the emergency vehicle has passed. Check for others that may be following."
-  },
-  {
-    id: 267,
-    type: 'true-false',
-    category: 'emergency-situations',
-    question: "🚨 The Move Over Law requires you to move over a lane for stopped emergency vehicles.",
-    correct: true,
-    explanation: "True! Florida's Move Over Law requires you to move over a lane (if safe) or slow down to 20 mph below the speed limit when passing stopped emergency, sanitation, utility, or tow vehicles."
   },
   {
     id: 268,
@@ -2992,6 +2687,113 @@ export const floridaQuestions = [
     ],
     correct: 2,
     explanation: "Always lock your doors, take your keys, close windows, park in well-lit areas, and use anti-theft devices. Never leave your car running unattended."
+  },
+  {
+    id: 276,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "What is the minimum speed limit on Florida highways with 4 or more lanes?",
+    options: [
+      "30 mph",
+      "40 mph",
+      "45 mph",
+      "50 mph"
+    ],
+    correct: 1,
+    explanation: "The minimum speed limit on all Florida highways with 4 or more lanes is 40 mph, unless posted otherwise."
+  },
+  {
+    id: 277,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "When the posted speed limit is 70 mph, what is the minimum speed limit?",
+    options: [
+      "40 mph",
+      "45 mph",
+      "50 mph",
+      "55 mph"
+    ],
+    correct: 2,
+    explanation: "When the posted speed limit is 70 mph in Florida, the minimum speed limit is 50 mph."
+  },
+  {
+    id: 278,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "How close to a fire hydrant can you legally park in Florida?",
+    options: [
+      "10 feet",
+      "15 feet",
+      "20 feet",
+      "25 feet"
+    ],
+    correct: 1,
+    explanation: "You must not park within 15 feet of a fire hydrant in Florida."
+  },
+  {
+    id: 279,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "How close to a crosswalk at an intersection can you legally park?",
+    options: [
+      "10 feet",
+      "15 feet",
+      "20 feet",
+      "30 feet"
+    ],
+    correct: 2,
+    explanation: "You must not park within 20 feet of a crosswalk at an intersection in Florida."
+  },
+  {
+    id: 280,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "How close to a stop sign can you legally park?",
+    options: [
+      "15 feet",
+      "20 feet",
+      "30 feet",
+      "50 feet"
+    ],
+    correct: 2,
+    explanation: "You must not park within 30 feet of a stop sign, traffic signal, or flashing signal in Florida."
+  },
+  {
+    id: 281,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "What is the maximum speed limit in Florida business districts unless otherwise posted?",
+    options: [
+      "20 mph",
+      "25 mph",
+      "30 mph",
+      "35 mph"
+    ],
+    correct: 2,
+    explanation: "The maximum speed limit in business districts in Florida is 30 mph unless otherwise posted."
+  },
+  {
+    id: 282,
+    category: 'road-rules',
+    type: 'multiple-choice',
+    question: "What is the maximum speed limit on rural undivided roads in Florida?",
+    options: [
+      "50 mph",
+      "55 mph",
+      "60 mph",
+      "65 mph"
+    ],
+    correct: 2,
+    explanation: "The maximum speed limit on rural undivided roads in Florida is 60 mph unless otherwise posted."
+  },
+  {
+    id: 283,
+    category: 'road-rules',
+    type: 'fill-in-blank',
+    question: "The legal BAC limit for commercial drivers in Florida is ____%.",
+    correctAnswer: "0.04",
+    acceptableAnswers: ["0.04", ".04", "0.04%", ".04%"],
+    explanation: "Commercial drivers in Florida have a stricter BAC limit of 0.04%, compared to 0.08% for regular drivers and 0.02% for drivers under 21."
   }
 ];
 
