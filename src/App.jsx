@@ -363,6 +363,7 @@ function App() {
   }
 
   const handleStudyAnswer = (answerIndex) => {
+    console.log('📚 handleStudyAnswer CALLED - answerIndex:', answerIndex)
     const studyQuestion = getFilteredQuestions()[currentQuestionIndex]
     if (!studyQuestion) return
     const questionType = studyQuestion.type || 'multiple-choice'
@@ -377,8 +378,15 @@ function App() {
       isCorrect = answerIndex === 1 // Passed from QuestionRenderer
     }
 
+    console.log('✨ Study mode - isCorrect:', isCorrect)
+
     if (isCorrect) {
+      console.log('🎉 STUDY MODE: Correct answer - playing sound and confetti')
+      playSound('correct')  // ← FIX: Added sound playback!
       fireConfetti()
+    } else {
+      console.log('❌ STUDY MODE: Wrong answer')
+      playSound('wrong')  // ← Also play wrong sound for consistency
     }
 
     setShowAnswer(true)
