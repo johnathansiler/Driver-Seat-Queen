@@ -651,9 +651,6 @@ function App() {
               )}
             </div>
             <h2 className="question-text">{currentQuestion.question}</h2>
-            <div className="question-quote">
-              <p>"{getRandomQuote()}"</p>
-            </div>
 
             <QuestionRenderer
               key={currentQuestionIndex}
@@ -678,6 +675,10 @@ function App() {
                 <p className="exp-text">{currentQuestion.explanation}</p>
               </div>
             )}
+
+            <div className="question-quote">
+              <p>"{getRandomQuote()}"</p>
+            </div>
           </div>
 
           {showExplanation && (
@@ -739,9 +740,6 @@ function App() {
                 )}
               </div>
               <h2 className="question-text">{studyQuestion.question}</h2>
-              <div className="question-quote">
-                <p>"{getRandomQuote()}"</p>
-              </div>
 
               <QuestionRenderer
                 key={currentQuestionIndex}
@@ -764,6 +762,10 @@ function App() {
                   <p className="exp-text">{studyQuestion.explanation}</p>
                 </div>
               )}
+
+              <div className="question-quote">
+                <p>"{getRandomQuote()}"</p>
+              </div>
             </div>
           </div>
 
@@ -947,10 +949,10 @@ function App() {
                   {getCategoryDisplay(studyQuestion.category)}
                 </div>
                 <h2 className="flashcard-question">{studyQuestion.question}</h2>
+                <div className="flashcard-hint">Click to flip 🔄</div>
                 <div className="question-quote">
                   <p>"{getRandomQuote()}"</p>
                 </div>
-                <div className="flashcard-hint">Click to flip 🔄</div>
               </div>
 
               {/* Back of card */}

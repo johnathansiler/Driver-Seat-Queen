@@ -387,7 +387,8 @@
 
 .question-quote {
   text-align: center;
-  margin: -15px 0 25px 0;
+  margin-top: 30px;
+  margin-bottom: 0;
   padding: 15px;
   background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(0, 255, 255, 0.1));
   border-radius: 10px;
