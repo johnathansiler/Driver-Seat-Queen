@@ -10,8 +10,11 @@ function App() {
   // Sound files array - use BASE_URL for correct paths in production
   const soundFiles = [
     `${import.meta.env.BASE_URL}sounds/ABSOLUTELY - AUDIO FROM JAYUZUMI.COM.mp3`,
+    `${import.meta.env.BASE_URL}sounds/bao-bao-bao.mp3`,
     `${import.meta.env.BASE_URL}sounds/barbia.mp3`,
+    `${import.meta.env.BASE_URL}sounds/city-girls-period-made-with-Voicemod (1).mp3`,
     `${import.meta.env.BASE_URL}sounds/I FEEL LIKE WE\'VE ELEVATED - AUDIO FROM JAYUZUMI.COM.mp3`,
+    `${import.meta.env.BASE_URL}sounds/ice-spice-grah.mp3`,
     `${import.meta.env.BASE_URL}sounds/nickis-kiss-kiss-sounds.mp3`,
     `${import.meta.env.BASE_URL}sounds/pink-wig-thick-ass-give-em-whiplash.mp3`,
     `${import.meta.env.BASE_URL}sounds/videoleap-9cde839e-2d8d-4945-a485-23d7f297cd9e-online-audio-converter.mp3`,
