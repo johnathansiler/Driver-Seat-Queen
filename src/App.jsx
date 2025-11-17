@@ -509,6 +509,7 @@ function App() {
             <h2 className="question-text">{currentQuestion.question}</h2>
 
             <QuestionRenderer
+              key={currentQuestionIndex}
               question={currentQuestion}
               onAnswer={handleAnswerClick}
               showExplanation={showExplanation}
@@ -593,6 +594,7 @@ function App() {
               <h2 className="question-text">{studyQuestion.question}</h2>
 
               <QuestionRenderer
+                key={currentQuestionIndex}
                 question={studyQuestion}
                 onAnswer={handleStudyAnswer}
                 showExplanation={showAnswer}
