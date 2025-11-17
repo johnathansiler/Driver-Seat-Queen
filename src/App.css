@@ -23,7 +23,7 @@
 .emoji {
   position: absolute;
   font-size: 2rem;
-  opacity: 0.15;
+  opacity: 0.4;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
