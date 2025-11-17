@@ -949,6 +949,66 @@
   color: #ef4444;
 }
 
+.matching-instruction {
+  text-align: center;
+  color: var(--hot-pink);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.left-item {
+  cursor: grab;
+  user-select: none;
+}
+
+.left-item:active {
+  cursor: grabbing;
+}
+
+.left-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+  cursor: grabbing;
+}
+
+.left-item.matched {
+  background: rgba(255, 20, 147, 0.15);
+  border-color: var(--hot-pink);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.left-item.matched:hover {
+  background: rgba(255, 20, 147, 0.25);
+  transform: scale(1.02);
+}
+
+.right-item.drag-over {
+  background: rgba(0, 217, 255, 0.3);
+  border-color: var(--cyan);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+}
+
+.matched-indicator {
+  color: var(--hot-pink);
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.left-item.incorrect {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.cross {
+  color: #ef4444;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
 /* Fill in the Blank */
 .fill-blank-container {
   display: flex;

@@ -97,6 +97,9 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
 
   // Matching
   if (questionType === 'matching') {
+    const [draggedItem, setDraggedItem] = useState(null)
+    const [dragOverItem, setDragOverItem] = useState(null)
+
     const shuffledRight = isStudyMode && !showExplanation
       ? [...question.pairs.map(p => p.right)].sort(() => Math.random() - 0.5)
       : question.pairs.map(p => p.right)
@@ -114,16 +117,71 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
       }
     }
 
+    const handleUnmatch = (leftItem) => {
+      const newAnswers = { ...matchingAnswers }
+      delete newAnswers[leftItem]
+      setMatchingAnswers(newAnswers)
+    }
+
+    const handleDragStart = (e, leftItem) => {
+      setDraggedItem(leftItem)
+      e.dataTransfer.effectAllowed = 'move'
+      e.dataTransfer.setData('text/html', leftItem)
+    }
+
+    const handleDragOver = (e, rightItem) => {
+      e.preventDefault()
+      e.dataTransfer.dropEffect = 'move'
+      setDragOverItem(rightItem)
+    }
+
+    const handleDragLeave = () => {
+      setDragOverItem(null)
+    }
+
+    const handleDrop = (e, rightItem) => {
+      e.preventDefault()
+      if (draggedItem && !showExplanation && !isStudyMode) {
+        handleMatch(draggedItem, rightItem)
+      }
+      setDraggedItem(null)
+      setDragOverItem(null)
+    }
+
+    const handleDragEnd = () => {
+      setDraggedItem(null)
+      setDragOverItem(null)
+    }
+
     return (
       <div className="matching-container">
+        <p className="matching-instruction">💖 Drag items from the left to match with the right! 💖</p>
         <div className="matching-grid">
           <div className="matching-column">
             <h4>Match:</h4>
-            {question.pairs.map((pair, index) => (
-              <div key={index} className="matching-item left-item">
-                {pair.left}
-              </div>
-            ))}
+            {question.pairs.map((pair, index) => {
+              const isMatched = matchingAnswers[pair.left]
+              const isCorrectMatch = showExplanation && matchingAnswers[pair.left] === pair.right
+              const isIncorrectMatch = showExplanation && matchingAnswers[pair.left] && matchingAnswers[pair.left] !== pair.right
+
+              return (
+                <div
+                  key={index}
+                  className={`matching-item left-item ${isMatched ? 'matched' : ''} ${draggedItem === pair.left ? 'dragging' : ''} ${isCorrectMatch ? 'correct' : ''} ${isIncorrectMatch ? 'incorrect' : ''}`}
+                  draggable={!showExplanation && !isStudyMode && !isMatched}
+                  onDragStart={(e) => handleDragStart(e, pair.left)}
+                  onDragEnd={handleDragEnd}
+                  onClick={() => isMatched && !showExplanation && !isStudyMode && handleUnmatch(pair.left)}
+                  style={{ cursor: isMatched && !showExplanation && !isStudyMode ? 'pointer' : 'grab' }}
+                  title={isMatched && !showExplanation && !isStudyMode ? 'Click to unmatch' : ''}
+                >
+                  {pair.left}
+                  {isMatched && <span className="matched-indicator"> → {matchingAnswers[pair.left]}</span>}
+                  {isCorrectMatch && <span className="checkmark"> ✓</span>}
+                  {isIncorrectMatch && <span className="cross"> ✗</span>}
+                </div>
+              )
+            })}
           </div>
           <div className="matching-column">
             <h4>With:</h4>
@@ -133,29 +191,23 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
               const isCorrectMatch = showExplanation && matchingAnswers[correctPair?.left] === rightItem
 
               return (
-                <button
+                <div
                   key={index}
-                  className={`matching-item right-item ${isMatched ? 'matched' : ''} ${isCorrectMatch ? 'correct' : ''}`}
-                  onClick={() => {
-                    if (!showExplanation && !isStudyMode) {
-                      // Find first unmatched left item
-                      const unmatchedLeft = question.pairs.find(p => !matchingAnswers[p.left])
-                      if (unmatchedLeft) {
-                        handleMatch(unmatchedLeft.left, rightItem)
-                      }
-                    }
-                  }}
-                  disabled={isMatched || showExplanation || isStudyMode}
+                  className={`matching-item right-item ${isMatched ? 'matched' : ''} ${dragOverItem === rightItem && !isMatched ? 'drag-over' : ''} ${isCorrectMatch ? 'correct' : ''}`}
+                  onDragOver={(e) => !isMatched && handleDragOver(e, rightItem)}
+                  onDragLeave={handleDragLeave}
+                  onDrop={(e) => !isMatched && handleDrop(e, rightItem)}
                 >
                   {rightItem}
-                  {isCorrectMatch && <span className="checkmark">✓</span>}
-                </button>
+                  {isCorrectMatch && <span className="checkmark"> ✓</span>}
+                </div>
               )
             })}
           </div>
         </div>
         {showExplanation && (
           <div className="matching-results">
+            <h4>Results:</h4>
             {question.pairs.map((pair, index) => (
               <div key={index} className={`match-pair ${matchingAnswers[pair.left] === pair.right ? 'correct-match' : 'incorrect-match'}`}>
                 <span>{pair.left}</span> → <span>{pair.right}</span>
