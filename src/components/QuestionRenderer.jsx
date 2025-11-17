@@ -1,13 +1,26 @@
 import { useState } from 'react'
+import { getQuestionImage, hasImage } from '../data/imageMapping'
 
 export const QuestionRenderer = ({ question, onAnswer, showExplanation, selectedAnswer, isStudyMode }) => {
   const [matchingAnswers, setMatchingAnswers] = useState({})
+  const [imageError, setImageError] = useState(false)
   const questionType = question.type || 'multiple-choice'
+  const questionImage = getQuestionImage(question.id)
 
   // Multiple Choice
   if (questionType === 'multiple-choice') {
     return (
       <>
+        {questionImage && !imageError && (
+          <div className="question-image-container">
+            <img
+              src={questionImage}
+              alt="Question illustration"
+              className="question-image"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
         <div className="answers-grid">
           {question.options.map((option, index) => {
             let buttonClass = 'answer-button'
@@ -63,7 +76,18 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
     const correctIndex = question.correct ? 0 : 1
 
     return (
-      <div className="true-false-container">
+      <>
+        {questionImage && !imageError && (
+          <div className="question-image-container">
+            <img
+              src={questionImage}
+              alt="Question illustration"
+              className="question-image"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
+        <div className="true-false-container">
         {options.map((option, index) => {
           let buttonClass = 'tf-button'
 
@@ -107,7 +131,8 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
             </button>
           )
         })}
-      </div>
+        </div>
+      </>
     )
   }
 
@@ -170,8 +195,19 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
     }
 
     return (
-      <div className="matching-container">
-        <p className="matching-instruction">💖 Drag items from the left to match with the right! 💖</p>
+      <>
+        {questionImage && !imageError && (
+          <div className="question-image-container">
+            <img
+              src={questionImage}
+              alt="Question illustration"
+              className="question-image"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
+        <div className="matching-container">
+          <p className="matching-instruction">💖 Drag items from the left to match with the right! 💖</p>
         <div className="matching-grid">
           <div className="matching-column">
             <h4>Match:</h4>
@@ -232,7 +268,8 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
             ))}
           </div>
         )}
-      </div>
+        </div>
+      </>
     )
   }
 
@@ -248,8 +285,19 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
     }
 
     return (
-      <div className="fill-blank-container">
-        <input
+      <>
+        {questionImage && !imageError && (
+          <div className="question-image-container">
+            <img
+              src={questionImage}
+              alt="Question illustration"
+              className="question-image"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
+        <div className="fill-blank-container">
+          <input
           type="text"
           className="fill-blank-input"
           value={userInput}
@@ -271,7 +319,8 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
             <strong>Correct Answer:</strong> {question.correctAnswer}
           </div>
         )}
-      </div>
+        </div>
+      </>
     )
   }
 
@@ -297,8 +346,19 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
     }
 
     return (
-      <div className="multiple-select-container">
-        <p className="select-instruction">Select all that apply:</p>
+      <>
+        {questionImage && !imageError && (
+          <div className="question-image-container">
+            <img
+              src={questionImage}
+              alt="Question illustration"
+              className="question-image"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
+        <div className="multiple-select-container">
+          <p className="select-instruction">Select all that apply:</p>
         <div className="answers-grid">
           {question.options.map((option, index) => {
             let buttonClass = 'answer-button multi-select'
@@ -342,7 +402,8 @@ export const QuestionRenderer = ({ question, onAnswer, showExplanation, selected
             SUBMIT ANSWER
           </button>
         )}
-      </div>
+        </div>
+      </>
     )
   }
 
