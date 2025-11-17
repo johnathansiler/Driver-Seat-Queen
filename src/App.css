@@ -693,7 +693,7 @@
 .back-button {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid var(--barbie-pink);
-  color: var(--barbie-pink);
+  color: var(--white);
   padding: 12px 25px;
   border-radius: 25px;
   font-size: 1rem;
@@ -939,6 +939,11 @@
 
 .mode-card.secondary {
   border-color: var(--purple);
+}
+
+.mode-card.secondary h3,
+.mode-card.secondary p {
+  color: var(--white);
 }
 
 .mode-card.tertiary {
