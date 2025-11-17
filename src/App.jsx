@@ -639,23 +639,20 @@ function App() {
       {/* Quiz/Practice/Review Mode */}
       {gameState === 'quiz' && currentQuestion && (
         <div className="quiz-screen">
-          <div className="quiz-top-bar">
+          <div className="study-header">
             <button className="back-button" onClick={() => setGameState('welcome')}>
-              ← HOME
+              ← BACK
             </button>
-          </div>
-
-          <div className="progress-bar">
-            <div
-              className="progress-fill"
-              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
-            />
+            <h2 className="study-title">
+              {quizMode === 'test' && 'TEST MODE'}
+              {quizMode === 'practice' && 'PRACTICE MODE'}
+              {quizMode === 'review' && 'REVIEW MISTAKES'}
+            </h2>
           </div>
 
           <div className="quiz-header">
             <div className="question-counter">
-              {quizMode === 'practice' && <span className="mode-badge practice-badge">Practice</span>}
-              {quizMode === 'review' && <span className="mode-badge review-badge">Review</span>}
+              Question {currentQuestionIndex + 1} / {questions.length}
             </div>
             <div className="score-display">
               Score: {score}/{currentQuestionIndex + (selectedAnswer !== null ? 1 : 0)}
