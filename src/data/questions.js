@@ -45,7 +45,7 @@ export const floridaQuestions = [
   {
     id: 4,
     category: 'road-rules',
-    question: "What is the maximum speed limit on Florida highways unless otherwise posted?",
+    question: "What is the maximum speed limit on Florida rural freeways and interstates unless otherwise posted?",
     options: [
       "55 mph",
       "65 mph",
@@ -53,7 +53,7 @@ export const floridaQuestions = [
       "75 mph"
     ],
     correct: 2,
-    explanation: "The maximum speed limit on Florida highways is 70 mph unless signs indicate otherwise."
+    explanation: "The maximum speed limit on Florida rural freeways and interstates is 70 mph unless signs indicate otherwise. General highways have a maximum of 55 mph."
   },
   {
     id: 5,
@@ -338,7 +338,7 @@ export const floridaQuestions = [
       "Under age 6",
       "Under age 8"
     ],
-    correct: 1,
+    correct: 2,
     explanation: "Florida law requires children age 5 and under to be secured in a crash-tested, federally approved child restraint device."
   },
   {
@@ -413,11 +413,11 @@ export const floridaQuestions = [
     options: [
       "Speed up to cross quickly",
       "Slow down and look both ways",
-      "Stop at least 15 feet from the nearest rail",
+      "Stop within 50 feet but not less than 15 feet from the nearest rail",
       "Honk your horn"
     ],
     correct: 2,
-    explanation: "Stop at least 15 feet from the nearest rail when lights are flashing, gates are down, or a train is approaching."
+    explanation: "You must stop within 50 feet but not less than 15 feet from the nearest rail when lights are flashing, gates are down, or a train is approaching."
   },
   {
     id: 50,
@@ -2396,12 +2396,12 @@ export const floridaQuestions = [
     question: "🔧 When must you use your headlights in Florida?",
     options: [
       "Only at night",
-      "Between sunset and sunrise, and when visibility is less than 500 feet",
+      "Between sunset and sunrise, and when visibility is less than 1,000 feet",
       "Only in bad weather",
       "Whenever you want"
     ],
     correct: 1,
-    explanation: "Florida law requires headlights between sunset and sunrise, and any time visibility is less than 500 feet due to weather or other conditions."
+    explanation: "Florida law requires headlights between sunset and sunrise, and any time visibility is less than 1,000 feet due to weather or other conditions."
   },
   {
     id: 227,
@@ -2540,7 +2540,7 @@ export const floridaQuestions = [
     question: "🔧 Window tinting in Florida is restricted to:",
     options: [
       "Any darkness you prefer",
-      "35% light transmission for front side windows",
+      "28% light transmission for front side windows",
       "Completely black windows are allowed",
       "No tinting is allowed"
     ],
