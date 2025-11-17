@@ -61,6 +61,21 @@
 .emoji-13 { left: 65%; top: 15%; animation: float1 19s infinite; animation-delay: -9s; }
 .emoji-14 { left: 75%; top: 65%; animation: float2 17s infinite; animation-delay: -11s; }
 .emoji-15 { left: 85%; top: 50%; animation: float3 15s infinite; animation-delay: -13s; }
+.emoji-16 { left: 5%; top: 50%; animation: float1 18s infinite; animation-delay: -1s; }
+.emoji-17 { left: 12%; top: 10%; animation: float2 16s infinite; animation-delay: -3s; }
+.emoji-18 { left: 18%; top: 90%; animation: float3 21s infinite; animation-delay: -5s; }
+.emoji-19 { left: 28%; top: 55%; animation: float1 14s infinite; animation-delay: -7s; }
+.emoji-20 { left: 38%; top: 15%; animation: float2 19s infinite; animation-delay: -9s; }
+.emoji-21 { left: 45%; top: 85%; animation: float3 17s infinite; animation-delay: -11s; }
+.emoji-22 { left: 55%; top: 25%; animation: float1 20s infinite; animation-delay: -13s; }
+.emoji-23 { left: 62%; top: 50%; animation: float2 15s infinite; animation-delay: -15s; }
+.emoji-24 { left: 72%; top: 10%; animation: float3 18s infinite; animation-delay: -17s; }
+.emoji-25 { left: 78%; top: 80%; animation: float1 16s infinite; animation-delay: -19s; }
+.emoji-26 { left: 88%; top: 20%; animation: float2 22s infinite; animation-delay: -21s; }
+.emoji-27 { left: 92%; top: 70%; animation: float3 14s infinite; animation-delay: -4s; }
+.emoji-28 { left: 8%; top: 35%; animation: float1 19s infinite; animation-delay: -6s; }
+.emoji-29 { left: 48%; top: 60%; animation: float2 17s infinite; animation-delay: -8s; }
+.emoji-30 { left: 68%; top: 40%; animation: float3 20s infinite; animation-delay: -10s; }
 
 /* Welcome Screen */
 /* Login Screen */

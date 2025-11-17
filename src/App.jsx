@@ -464,11 +464,26 @@ function App() {
         <span className="emoji emoji-8">🦋</span>
         <span className="emoji emoji-9">💎</span>
         <span className="emoji emoji-10">🌸</span>
-        <span className="emoji emoji-11">👑</span>
-        <span className="emoji emoji-12">✨</span>
-        <span className="emoji emoji-13">💖</span>
-        <span className="emoji emoji-14">🚗</span>
-        <span className="emoji emoji-15">💅</span>
+        <span className="emoji emoji-11">💄</span>
+        <span className="emoji emoji-12">🏙️</span>
+        <span className="emoji emoji-13">🎀</span>
+        <span className="emoji emoji-14">💋</span>
+        <span className="emoji emoji-15">🌺</span>
+        <span className="emoji emoji-16">🦄</span>
+        <span className="emoji emoji-17">🌈</span>
+        <span className="emoji emoji-18">💃</span>
+        <span className="emoji emoji-19">🎉</span>
+        <span className="emoji emoji-20">🔥</span>
+        <span className="emoji emoji-21">💫</span>
+        <span className="emoji emoji-22">🎵</span>
+        <span className="emoji emoji-23">🚘</span>
+        <span className="emoji emoji-24">🌙</span>
+        <span className="emoji emoji-25">⚡</span>
+        <span className="emoji emoji-26">🎯</span>
+        <span className="emoji emoji-27">🌹</span>
+        <span className="emoji emoji-28">👸</span>
+        <span className="emoji emoji-29">🍾</span>
+        <span className="emoji emoji-30">🎊</span>
       </div>
 
       {/* Sound Toggle - Always visible except on login */}
