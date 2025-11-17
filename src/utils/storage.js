@@ -1,13 +1,64 @@
 // LocalStorage utility for tracking user progress
 
+const GLOBAL_KEYS = {
+  CURRENT_USER: 'dsq_current_user',
+  ALL_USERS: 'dsq_all_users'
+}
+
 const STORAGE_KEYS = {
-  SCORE_HISTORY: 'dsq_score_history',
-  WRONG_ANSWERS: 'dsq_wrong_answers',
-  ACHIEVEMENTS: 'dsq_achievements',
-  STREAK: 'dsq_streak',
-  LAST_STUDY_DATE: 'dsq_last_study',
-  USER_STATS: 'dsq_stats',
-  SOUND_ENABLED: 'dsq_sound_enabled'
+  SCORE_HISTORY: 'score_history',
+  WRONG_ANSWERS: 'wrong_answers',
+  ACHIEVEMENTS: 'achievements',
+  STREAK: 'streak',
+  LAST_STUDY_DATE: 'last_study',
+  USER_STATS: 'stats',
+  SOUND_ENABLED: 'sound_enabled'
+}
+
+// Username Management
+export const setCurrentUser = (username) => {
+  localStorage.setItem(GLOBAL_KEYS.CURRENT_USER, username)
+
+  // Add to users list if not exists
+  const users = getAllUsers()
+  if (!users.includes(username)) {
+    users.push(username)
+    localStorage.setItem(GLOBAL_KEYS.ALL_USERS, JSON.stringify(users))
+  }
+}
+
+export const getCurrentUser = () => {
+  return localStorage.getItem(GLOBAL_KEYS.CURRENT_USER)
+}
+
+export const getAllUsers = () => {
+  const users = localStorage.getItem(GLOBAL_KEYS.ALL_USERS)
+  return users ? JSON.parse(users) : []
+}
+
+export const deleteUser = (username) => {
+  const users = getAllUsers()
+  const updated = users.filter(u => u !== username)
+  localStorage.setItem(GLOBAL_KEYS.ALL_USERS, JSON.stringify(updated))
+
+  // Delete all user data
+  Object.values(STORAGE_KEYS).forEach(key => {
+    localStorage.removeItem(`dsq_${username}_${key}`)
+  })
+
+  // If current user was deleted, clear current user
+  if (getCurrentUser() === username) {
+    localStorage.removeItem(GLOBAL_KEYS.CURRENT_USER)
+  }
+}
+
+// Helper to get user-specific key
+const getUserKey = (key) => {
+  const username = getCurrentUser()
+  if (!username) {
+    throw new Error('No user logged in')
+  }
+  return `dsq_${username}_${key}`
 }
 
 // Score History
@@ -22,18 +73,18 @@ export const saveScore = (score, total, mode = 'test') => {
     passed: score >= (total * 0.8)
   }
   history.push(newScore)
-  localStorage.setItem(STORAGE_KEYS.SCORE_HISTORY, JSON.stringify(history))
+  localStorage.setItem(getUserKey(STORAGE_KEYS.SCORE_HISTORY), JSON.stringify(history))
   updateStats()
   return newScore
 }
 
 export const getScoreHistory = () => {
-  const history = localStorage.getItem(STORAGE_KEYS.SCORE_HISTORY)
+  const history = localStorage.getItem(getUserKey(STORAGE_KEYS.SCORE_HISTORY))
   return history ? JSON.parse(history) : []
 }
 
 export const clearScoreHistory = () => {
-  localStorage.removeItem(STORAGE_KEYS.SCORE_HISTORY)
+  localStorage.removeItem(getUserKey(STORAGE_KEYS.SCORE_HISTORY))
 }
 
 // Wrong Answers
@@ -41,23 +92,23 @@ export const saveWrongAnswer = (questionId) => {
   const wrongAnswers = getWrongAnswers()
   if (!wrongAnswers.includes(questionId)) {
     wrongAnswers.push(questionId)
-    localStorage.setItem(STORAGE_KEYS.WRONG_ANSWERS, JSON.stringify(wrongAnswers))
+    localStorage.setItem(getUserKey(STORAGE_KEYS.WRONG_ANSWERS), JSON.stringify(wrongAnswers))
   }
 }
 
 export const removeWrongAnswer = (questionId) => {
   const wrongAnswers = getWrongAnswers()
   const updated = wrongAnswers.filter(id => id !== questionId)
-  localStorage.setItem(STORAGE_KEYS.WRONG_ANSWERS, JSON.stringify(updated))
+  localStorage.setItem(getUserKey(STORAGE_KEYS.WRONG_ANSWERS), JSON.stringify(updated))
 }
 
 export const getWrongAnswers = () => {
-  const answers = localStorage.getItem(STORAGE_KEYS.WRONG_ANSWERS)
+  const answers = localStorage.getItem(getUserKey(STORAGE_KEYS.WRONG_ANSWERS))
   return answers ? JSON.parse(answers) : []
 }
 
 export const clearWrongAnswers = () => {
-  localStorage.removeItem(STORAGE_KEYS.WRONG_ANSWERS)
+  localStorage.removeItem(getUserKey(STORAGE_KEYS.WRONG_ANSWERS))
 }
 
 // Achievements
@@ -68,14 +119,14 @@ export const unlockAchievement = (achievementId) => {
       id: achievementId,
       unlockedAt: new Date().toISOString()
     })
-    localStorage.setItem(STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(achievements))
+    localStorage.setItem(getUserKey(STORAGE_KEYS.ACHIEVEMENTS), JSON.stringify(achievements))
     return true
   }
   return false
 }
 
 export const getAchievements = () => {
-  const achievements = localStorage.getItem(STORAGE_KEYS.ACHIEVEMENTS)
+  const achievements = localStorage.getItem(getUserKey(STORAGE_KEYS.ACHIEVEMENTS))
   return achievements ? JSON.parse(achievements) : []
 }
 
@@ -87,7 +138,7 @@ export const hasAchievement = (achievementId) => {
 // Study Streak
 export const updateStreak = () => {
   const today = new Date().toDateString()
-  const lastStudy = localStorage.getItem(STORAGE_KEYS.LAST_STUDY_DATE)
+  const lastStudy = localStorage.getItem(getUserKey(STORAGE_KEYS.LAST_STUDY_DATE))
   const streak = getStreak()
 
   if (lastStudy === today) {
@@ -111,14 +162,14 @@ export const updateStreak = () => {
     newStreak = 1
   }
 
-  localStorage.setItem(STORAGE_KEYS.STREAK, newStreak.toString())
-  localStorage.setItem(STORAGE_KEYS.LAST_STUDY_DATE, today)
+  localStorage.setItem(getUserKey(STORAGE_KEYS.STREAK), newStreak.toString())
+  localStorage.setItem(getUserKey(STORAGE_KEYS.LAST_STUDY_DATE), today)
 
   return newStreak
 }
 
 export const getStreak = () => {
-  const streak = localStorage.getItem(STORAGE_KEYS.STREAK)
+  const streak = localStorage.getItem(getUserKey(STORAGE_KEYS.STREAK))
   return streak ? parseInt(streak, 10) : 0
 }
 
@@ -136,12 +187,12 @@ export const updateStats = () => {
       : 0,
     lastUpdated: new Date().toISOString()
   }
-  localStorage.setItem(STORAGE_KEYS.USER_STATS, JSON.stringify(stats))
+  localStorage.setItem(getUserKey(STORAGE_KEYS.USER_STATS), JSON.stringify(stats))
   return stats
 }
 
 export const getStats = () => {
-  const stats = localStorage.getItem(STORAGE_KEYS.USER_STATS)
+  const stats = localStorage.getItem(getUserKey(STORAGE_KEYS.USER_STATS))
   if (stats) {
     return JSON.parse(stats)
   }
@@ -156,11 +207,11 @@ export const getStats = () => {
 
 // Sound Settings
 export const setSoundEnabled = (enabled) => {
-  localStorage.setItem(STORAGE_KEYS.SOUND_ENABLED, enabled.toString())
+  localStorage.setItem(getUserKey(STORAGE_KEYS.SOUND_ENABLED), enabled.toString())
 }
 
 export const getSoundEnabled = () => {
-  const enabled = localStorage.getItem(STORAGE_KEYS.SOUND_ENABLED)
+  const enabled = localStorage.getItem(getUserKey(STORAGE_KEYS.SOUND_ENABLED))
   return enabled === null ? true : enabled === 'true'
 }
 

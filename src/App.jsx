@@ -21,8 +21,12 @@ function App() {
     `${import.meta.env.BASE_URL}sounds/YEAH - AUDIO FROM JAYUZUMI.COM.mp3`
   ]
 
-  // Game State: welcome, mode-select, quiz, study, practice, review, results, dashboard, flashcards
-  const [gameState, setGameState] = useState('welcome')
+  // User Authentication
+  const [currentUser, setCurrentUser] = useState(storage.getCurrentUser())
+  const [newUsername, setNewUsername] = useState('')
+
+  // Game State: login, welcome, mode-select, quiz, study, practice, review, results, dashboard, flashcards
+  const [gameState, setGameState] = useState(currentUser ? 'welcome' : 'login')
   const [quizMode, setQuizMode] = useState('test') // test, practice, review
 
   // Question Management
@@ -404,6 +408,26 @@ function App() {
     storage.setSoundEnabled(newValue)
   }
 
+  const handleUserLogin = (username) => {
+    storage.setCurrentUser(username)
+    setCurrentUser(username)
+    setGameState('welcome')
+    loadUserData()
+  }
+
+  const handleCreateUser = () => {
+    const trimmed = newUsername.trim()
+    if (trimmed) {
+      handleUserLogin(trimmed)
+      setNewUsername('')
+    }
+  }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+    setGameState('login')
+  }
+
   const getCategoryDisplay = (category) => {
     const categories = {
       'road-rules': '🚗 Road Rules',
@@ -428,15 +452,82 @@ function App() {
 
   return (
     <div className="app">
-      {/* Sound Toggle - Always visible */}
-      <button className="sound-toggle" onClick={toggleSound} title={soundEnabled ? 'Mute sounds' : 'Enable sounds'}>
-        {soundEnabled ? '🔊' : '🔇'}
-      </button>
+      {/* Sound Toggle - Always visible except on login */}
+      {gameState !== 'login' && (
+        <button className="sound-toggle" onClick={toggleSound} title={soundEnabled ? 'Mute sounds' : 'Enable sounds'}>
+          {soundEnabled ? '🔊' : '🔇'}
+        </button>
+      )}
+
+      {/* Login/User Selection Screen */}
+      {gameState === 'login' && (
+        <div className="login-screen">
+          <div className="login-content">
+            <h1 className="login-title">🚗 DRIVER SEAT QUEEN 👑</h1>
+            <p className="login-subtitle">Choose your profile or create a new one!</p>
+
+            {/* Existing Users */}
+            {storage.getAllUsers().length > 0 && (
+              <div className="user-selection">
+                <h3 className="section-title">Select Profile:</h3>
+                <div className="user-list">
+                  {storage.getAllUsers().map((username) => (
+                    <button
+                      key={username}
+                      className="user-button"
+                      onClick={() => handleUserLogin(username)}
+                    >
+                      <span className="user-icon">👤</span>
+                      <span className="user-name">{username}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Create New User */}
+            <div className="create-user">
+              <h3 className="section-title">
+                {storage.getAllUsers().length > 0 ? 'Or Create New Profile:' : 'Create Your Profile:'}
+              </h3>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="username-input"
+                  placeholder="Enter your name..."
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleCreateUser()}
+                  maxLength={20}
+                />
+                <button
+                  className="create-button"
+                  onClick={handleCreateUser}
+                  disabled={!newUsername.trim()}
+                >
+                  START 💖
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Welcome Screen */}
       {gameState === 'welcome' && (
         <div className="welcome-screen">
           <div className="welcome-content">
+            {/* User Profile Banner */}
+            <div className="user-profile-banner">
+              <div className="profile-info">
+                <span className="profile-icon">👤</span>
+                <span className="profile-name">{currentUser}</span>
+              </div>
+              <button className="logout-button" onClick={handleLogout}>
+                Switch User
+              </button>
+            </div>
+
             <h1 className="title">
               <span className="sparkle">👑</span> DRIVERS SEAT <span className="sparkle">👑</span>
               <br />
@@ -560,6 +651,9 @@ function App() {
               )}
             </div>
             <h2 className="question-text">{currentQuestion.question}</h2>
+            <div className="question-quote">
+              <p>"{getRandomQuote()}"</p>
+            </div>
 
             <QuestionRenderer
               key={currentQuestionIndex}
@@ -645,6 +739,9 @@ function App() {
                 )}
               </div>
               <h2 className="question-text">{studyQuestion.question}</h2>
+              <div className="question-quote">
+                <p>"{getRandomQuote()}"</p>
+              </div>
 
               <QuestionRenderer
                 key={currentQuestionIndex}
@@ -850,6 +947,9 @@ function App() {
                   {getCategoryDisplay(studyQuestion.category)}
                 </div>
                 <h2 className="flashcard-question">{studyQuestion.question}</h2>
+                <div className="question-quote">
+                  <p>"{getRandomQuote()}"</p>
+                </div>
                 <div className="flashcard-hint">Click to flip 🔄</div>
               </div>
 
