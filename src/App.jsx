@@ -88,21 +88,42 @@ function App() {
   }
 
   const playSound = (type) => {
-    if (!soundEnabled) return
+    if (!soundEnabled) {
+      console.log('Sound is disabled')
+      return
+    }
 
-    // Play random sound from the sound files array
-    const randomSound = soundFiles[Math.floor(Math.random() * soundFiles.length)]
-    const audio = new Audio(randomSound)
-    audio.volume = 0.5 // Set volume to 50%
-    audio.play().catch(err => console.log('Audio play failed:', err))
+    try {
+      // Play random sound from the sound files array
+      const randomSound = soundFiles[Math.floor(Math.random() * soundFiles.length)]
+      console.log('Playing sound:', randomSound, 'for type:', type)
 
-    // Visual feedback with confetti
-    if (type === 'achievement' || type === 'correct') {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      })
+      const audio = new Audio(randomSound)
+      audio.volume = 0.5 // Set volume to 50%
+
+      // Play with proper promise handling
+      const playPromise = audio.play()
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('Sound played successfully:', type)
+          })
+          .catch(err => {
+            console.error('Audio play failed:', err, 'Sound path:', randomSound)
+          })
+      }
+
+      // Visual feedback with confetti
+      if (type === 'achievement' || type === 'correct') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        })
+      }
+    } catch (error) {
+      console.error('Error in playSound:', error)
     }
   }
 
