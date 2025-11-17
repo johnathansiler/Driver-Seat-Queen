@@ -22,8 +22,8 @@
 
 .emoji {
   position: absolute;
-  font-size: 2rem;
-  opacity: 0.4;
+  font-size: 2.5rem;
+  opacity: 0.7;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -1065,11 +1065,12 @@
   font-size: 0.8rem;
   margin-left: 10px;
   font-weight: 700;
+  color: var(--white);
 }
 
 .practice-badge {
   background: linear-gradient(135deg, var(--purple), var(--barbie-pink));
-  color: var(--white);
+  color: var(--white) !important;
 }
 
 .review-badge {
