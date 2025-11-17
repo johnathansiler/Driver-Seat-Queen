@@ -76,11 +76,15 @@
   background: rgba(0, 0, 0, 0.3);
   padding: 40px;
   border-radius: 20px;
-  border: 2px solid var(--cyan);
+  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  border-right: 3px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.5),
     0 10px 30px rgba(157, 0, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    inset 2px 2px 4px rgba(255, 255, 255, 0.15),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4);
   transform: translateZ(0);
   position: relative;
 }
@@ -256,14 +260,18 @@
 .welcome-content {
   background: rgba(26, 10, 31, 0.7);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--hot-pink);
+  border-top: 4px solid rgba(255, 255, 255, 0.3);
+  border-left: 4px solid rgba(255, 255, 255, 0.2);
+  border-right: 4px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   padding: 50px 30px;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.6),
     0 15px 40px rgba(255, 20, 147, 0.4),
     0 5px 15px rgba(157, 0, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.2),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   transform: translateZ(0);
   position: relative;
 }
@@ -433,15 +441,18 @@
 .question-card {
   background: rgba(26, 10, 31, 0.8);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--purple);
+  border-top: 4px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   border-radius: 25px;
   padding: 40px;
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(157, 0, 255, 0.5),
     0 10px 25px rgba(255, 105, 180, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   margin-bottom: 30px;
   transform: translateZ(0);
   position: relative;
@@ -632,15 +643,18 @@
 .results-content {
   background: rgba(26, 10, 31, 0.8);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--gold);
+  border-top: 4px solid rgba(255, 255, 255, 0.4);
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   border-radius: 30px;
   padding: 50px 30px;
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(0, 217, 255, 0.5),
     0 10px 25px rgba(255, 215, 0, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   text-align: center;
   transform: translateZ(0);
   position: relative;
@@ -870,15 +884,18 @@
 .study-card {
   background: rgba(26, 10, 31, 0.8);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--purple);
+  border-top: 4px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   border-radius: 25px;
   padding: 40px;
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(157, 0, 255, 0.5),
     0 10px 25px rgba(255, 105, 180, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   margin-bottom: 30px;
   transform: translateZ(0);
   position: relative;
@@ -1513,15 +1530,18 @@
 .dashboard-content {
   background: rgba(26, 10, 31, 0.7);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--purple);
+  border-top: 4px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   border-radius: 30px;
   padding: 40px;
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(157, 0, 255, 0.5),
     0 10px 25px rgba(255, 105, 180, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   transform: translateZ(0);
   position: relative;
 }
@@ -1849,25 +1869,31 @@
 .flashcard-front {
   background: rgba(26, 10, 31, 0.8);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--hot-pink);
+  border-top: 4px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(255, 20, 147, 0.5),
     0 10px 25px rgba(157, 0, 255, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .flashcard-back {
   background: rgba(26, 10, 31, 0.8);
   backdrop-filter: blur(20px);
-  border: 3px solid var(--cyan);
+  border-top: 4px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  border-right: 4px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.7),
     0 20px 50px rgba(0, 217, 255, 0.5),
     0 10px 25px rgba(157, 0, 255, 0.3),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+    inset 3px 3px 6px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.5);
   transform: rotateY(180deg);
 }
 
